@@ -10,12 +10,22 @@
         {{ Form::label('title' , 'Title:') }}
         {{ Form::text('title', null, ["class" => 'form-control']) }}
         <br>
+<<<<<<< HEAD
         {{ Form::label('body' , 'Body:') }}
         {{ Form::textarea('body',null, ["class" => 'form-control']) }}
+=======
+        {{ Form::label('slug' , 'Slug:') }}
+        {{ Form::text('slug',null, ["class" => 'form-control']) }}
+        <br>
+        {{ Form::label('body' , 'Body:') }}
+        {{ Form::textarea('body',null, ["class" => 'form-control']) }}
+        
+>>>>>>> refs/remotes/origin/master
     </div>
     
     <div class="col-md-4">
         <div class="well">
+<<<<<<< HEAD
             <dl class="dl-horizontal">
                 <dt>Created At:</dt>
                 <dd>{{ date('M j, Y H:i',strtotime($post->created_at)) }}</dd>
@@ -25,6 +35,17 @@
                 <dt>Last Update:</dt>
                 <dd>{{ date('M j, Y H:i',strtotime($post->updated_at)) }}</dd>
             </dl>
+=======
+            <div class="dl-horizontal">
+                <label>Created At:</label>
+                <p>{{ date('M j, Y H:i',strtotime($post->created_at)) }}</p>
+            </div>
+                
+            <div class="dl-horizontal">
+                <label>Last Update:</label>
+                <p>{{ date('M j, Y H:i',strtotime($post->updated_at)) }}</p>
+            </div>
+>>>>>>> refs/remotes/origin/master
             <hr>
             <div class="row">
                 <div class="col-sm-6">

@@ -5,11 +5,19 @@
 @section('content')
 
     <div class="row">
+<<<<<<< HEAD
         <div class="col-md-10">
             <h1>All Posts</h1>
         </div>
         
         <div class="col-md-2">
+=======
+        <div class="col-md-8">
+            <h1>All Posts</h1>
+        </div>
+        
+        <div class="col-md-4">
+>>>>>>> refs/remotes/origin/master
             <a href="{{ route('posts.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Create New Post</a>
         </div>
         <div class="col-md-12">

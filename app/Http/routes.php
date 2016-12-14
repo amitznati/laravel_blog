@@ -15,3 +15,8 @@ Route::get('/about', 'PagesController@getAbout');
 Route::get('/', 'PagesController@getIndex');
 
 Route::resource('posts','PostController');
+<<<<<<< HEAD
+=======
+Route::get('blog/{slug}',['uses' => 'BlogController@getSingle', 'as' => 'blog.single'])->where('slug', '[\w\d\-\_]+');
+Route::get('blog',['uses' => 'BlogController@getIndex', 'as' => 'blog.index']);
+>>>>>>> refs/remotes/origin/master

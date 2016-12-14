@@ -18,7 +18,11 @@ class PostController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $posts = Post::orderBy('id', 'desc')->paginate(3);
+=======
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
+>>>>>>> refs/remotes/origin/master
         return view('posts.index')->withPosts($posts);
     }
 
@@ -43,12 +47,22 @@ class PostController extends Controller
         //Validate
         $this->validate($request,array(
                 'title' => 'required|max:255',
+<<<<<<< HEAD
+=======
+                'slug' => 'required|alpha-dash|min:5|max:255|unique:posts,slug',
+>>>>>>> refs/remotes/origin/master
                 'body' => 'required'
             ));
         //Stor in DB
         $post = new Post;
         $post->title = $request->title;
+<<<<<<< HEAD
         $post->body = $request->body;
+=======
+        $post->slug = $request->slug;
+        $post->body = $request->body;
+        
+>>>>>>> refs/remotes/origin/master
         $post->save();
         
         Session::flash('success','The blog post successfully saved!');
@@ -91,6 +105,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+<<<<<<< HEAD
         //Validate
         $this->validate($request,array(
                 'title' => 'required|max:255',
@@ -99,6 +114,27 @@ class PostController extends Controller
         //Stor in DB
         $post = Post::find($id);
         $post->title = $request->input('title');
+=======
+        $post = Post::find($id);
+        //Validate
+        if($post->slug == $request->input('slug'))
+        {
+            $this->validate($request,array(
+                    'title' => 'required|max:255',
+                    'body' => 'required'
+                ));
+        }
+        else{
+            $this->validate($request,array(
+                    'title' => 'required|max:255',
+                    'slug' => 'required|alpha-dash|min:5|max:255|unique:posts,slug',
+                    'body' => 'required'
+                ));
+        }
+        //Stor in DB
+        $post->title = $request->input('title');
+        $post->slug = $request->input('slug');
+>>>>>>> refs/remotes/origin/master
         $post->body = $request->input('body');
         $post->save();
         

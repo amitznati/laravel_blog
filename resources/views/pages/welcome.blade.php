@@ -20,7 +20,11 @@
                 <div class="post">
                     <h3>{{ $post->title }}</h3>
                     <p>{{ substr($post->body,0,300) }}{{ strlen($post->body) > 300 ? "..." : "" }}</p>
+<<<<<<< HEAD
                     <a href="#" class="btn btn-primary">Read More</a>
+=======
+                    <a href="{{ route('blog.single', $post->slug) }}" class="btn btn-primary">Read More</a>
+>>>>>>> refs/remotes/origin/master
                 </div>
                 
                 <hr>

@@ -14,6 +14,7 @@
     
     <div class="col-md-4">
         <div class="well">
+<<<<<<< HEAD
             <dl class="dl-horizontal">
                 <dt>Created At:</dt>
                 <dd>{{ date('M j, Y H:i',strtotime($post->created_at)) }}</dd>
@@ -23,6 +24,21 @@
                 <dt>Last Update:</dt>
                 <dd>{{ date('M j, Y H:i',strtotime($post->updated_at)) }}</dd>
             </dl>
+=======
+            <div>
+                <lable class="lead">Url:</lable>
+                <p><a href="{{ url('blog/'.$post->slug) }}">{{ url('blog/'.$post->slug) }}</a></p>
+            </div>
+            <div>
+                <lable class="lead">Created At:</lable>
+                <p>{{ date('M j, Y H:i',strtotime($post->created_at)) }}</p>
+            </div>
+                
+            <div>
+                <lable class="lead">Last Update:</lable>
+                <p>{{ date('M j, Y H:i',strtotime($post->updated_at)) }}</p>
+            </div>
+>>>>>>> refs/remotes/origin/master
             <hr>
             <div class="row">
                 <div class="col-sm-6">
