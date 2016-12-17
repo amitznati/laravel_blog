@@ -11,9 +11,9 @@
 |
 */
 //Authentication Routes
-Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::get('auth/login', ['uses' => 'Auth\AuthController@getLogin', 'as' => 'login']);
 Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
+Route::get('auth/logout', ['uses' =>'Auth\AuthController@getLogout', 'as' => 'logout']);
 
 //Registration Routes
 Route::get('auth/register', 'Auth\AuthController@getRegister');
