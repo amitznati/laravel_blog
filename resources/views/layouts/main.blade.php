@@ -14,13 +14,15 @@
             
             @include('partials._messages')
             
+            {{ Auth::check() ? "Logged In" : "Logged Out" }}
+
             @yield('content')
             
             @include('partials._footer')
             
         </div>
     
-        @include(partials._scripts')
+        @include('partials._scripts')
         
         @yield('scripts')
     
