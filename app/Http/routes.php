@@ -19,6 +19,10 @@ Route::get('auth/logout', ['uses' =>'Auth\AuthController@getLogout', 'as' => 'lo
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
+//Password Reset Routes
+Route::get('password/reset/{token?}','Auth\PasswordController@showResetForm');
+Route::post('password/email','Auth\PasswordController@sendResetLinkEmail');
+Route::post('password/reset', 'Auth\PasswordController@reset');
 
 Route::get('/contact', 'PagesController@getContact');
 Route::get('/about', 'PagesController@getAbout');
