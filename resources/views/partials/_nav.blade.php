@@ -26,6 +26,7 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello {!! Auth::user()->name !!}<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="/posts">Posts</a></li>
+                    <li><a href="/categories">Categories</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="{{ route('logout') }}">Log Out</a></li>
                   </ul>
