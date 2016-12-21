@@ -90,6 +90,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category->is_active = false;
+        Session::flash('success', 'The Category successfully deleted!');
+        return redirect()->route('categories.index');
     }
 }

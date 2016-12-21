@@ -47,17 +47,17 @@ class PostController extends Controller
     {
         //Validate
         $this->validate($request,array(
-                'title' => 'required|max:255',
-                'slug' => 'required|alpha-dash|min:5|max:255|unique:posts,slug',
-                'category' => 'required',
-                'body' => 'required'
+                'title'       => 'required|max:255',
+                'slug'        => 'required|alpha-dash|min:5|max:255|unique:posts,slug',
+                'category_id' => 'required|integer',
+                'body'        => 'required'
             ));
         //Stor in DB
         $post = new Post;
-        $post->title = $request->title;
-        $post->slug = $request->slug;
-        $post->category_id = $request->category;
-        $post->body = $request->body;
+        $post->title       = $request->title;
+        $post->slug        = $request->slug;
+        $post->category_id = $request->category_id;
+        $post->body        = $request->body;
         
         $post->save();
         
@@ -89,7 +89,8 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('posts.edit')->withPost($post);
+        $categories = Category::all()->lists('name','id');
+        return view('posts.edit')->withPost($post)->withCategories($categories);
     }
 
     /**
@@ -106,21 +107,24 @@ class PostController extends Controller
         if($post->slug == $request->input('slug'))
         {
             $this->validate($request,array(
-                    'title' => 'required|max:255',
-                    'body' => 'required'
+                    'title'       => 'required|max:255',
+                    'category_id' => 'required|integer',
+                    'body'        => 'required|'
                 ));
         }
         else{
             $this->validate($request,array(
-                    'title' => 'required|max:255',
-                    'slug' => 'required|alpha-dash|min:5|max:255|unique:posts,slug',
-                    'body' => 'required'
+                    'title'       => 'required|max:255',
+                    'slug'        => 'required|alpha-dash|min:5|max:255|unique:posts,slug',
+                    'category_id' => 'required|integer',
+                    'body'        => 'required'
                 ));
         }
         //Stor in DB
-        $post->title = $request->input('title');
-        $post->slug = $request->input('slug');
-        $post->body = $request->input('body');
+        $post->title       = $request->input('title');
+        $post->slug        = $request->input('slug');
+        $post->category_id = $request->input('category_id');
+        $post->body        = $request->input('body');
         $post->save();
         
         Session::flash('success','The blog post successfully saved!');

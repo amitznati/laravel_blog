@@ -20,6 +20,11 @@
 					<tr>
 						<th>{{ $category->id }}</th>
 						<td>{{ $category->name }}</td>
+						{{-- <td>
+							{!! Form::model($category , ['route' => ['categories.destroy', $category->id] ,  'method' => 'DELETE']) !!}
+							{!! Form::submit('Delete',["class" => 'btn btn-danger']) !!}
+                    		{!! Form::close() !!}
+						</td> --}}
 					</tr>
 				@endforeach
 				</tbody>
