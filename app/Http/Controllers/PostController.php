@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Session;
 
 class PostController extends Controller
@@ -34,7 +35,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::where('is_active', '=', '1')->get();
-        return view('posts.create')->withCategories($categories);
+        $tags = Tag::all();
+        return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -45,6 +47,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         //Validate
         $this->validate($request,array(
                 'title'       => 'required|max:255',
@@ -61,6 +64,8 @@ class PostController extends Controller
         
         $post->save();
         
+        $post->tags()->sync($request->tags, false);
+
         Session::flash('success','The blog post successfully saved!');
         //Redirect
         return redirect()->route('posts.show', $post->id);
@@ -90,7 +95,8 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $categories = Category::where('is_active', '=' ,'1')->lists('name','id');
-        return view('posts.edit')->withPost($post)->withCategories($categories);
+        $tags = Tag::all()->lists('name','id');
+        return view('posts.edit')->withPost($post)->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -102,6 +108,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $post = Post::find($id);
         //Validate
         if($post->slug == $request->input('slug'))
@@ -127,6 +134,8 @@ class PostController extends Controller
         $post->body        = $request->input('body');
         $post->save();
         
+        $post->tags()->sync($request->tags ? $request->tags : [] ); 
+
         Session::flash('success','The blog post successfully saved!');
         //Redirect
         return redirect()->route('posts.show', $post->id);
