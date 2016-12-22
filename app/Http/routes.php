@@ -28,6 +28,10 @@ Route::post('password/reset', 'Auth\PasswordController@reset');
 Route::resource('categories', 'CategoryController',['except' => ['create']]);
 //Route::resource('categories', 'CategoryController',['only' => ['create']]);
 
+//Tags
+Route::resource('tags', 'TagController',['except' => ['create']]);
+
+
 Route::get('/contact', 'PagesController@getContact');
 Route::get('/about', 'PagesController@getAbout');
 Route::get('/', 'PagesController@getIndex');
