@@ -33,7 +33,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::where('is_active', '=', '1')->get();
         return view('posts.create')->withCategories($categories);
     }
 
@@ -89,7 +89,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        $categories = Category::all()->lists('name','id');
+        $categories = Category::where('is_active', '=' ,'1')->lists('name','id');
         return view('posts.edit')->withPost($post)->withCategories($categories);
     }
 

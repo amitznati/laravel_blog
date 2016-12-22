@@ -22,7 +22,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::where('is_active', '=', '1')->get();
         return view('categories.index')->withCategories($categories);
     }
 
@@ -91,7 +91,8 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
-        $category->is_active = false;
+        $category->is_active = '0';
+        $category->save();
         Session::flash('success', 'The Category successfully deleted!');
         return redirect()->route('categories.index');
     }
