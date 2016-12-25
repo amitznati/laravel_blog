@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Comment;
+use App\Post;
+use Session;
+
+
 class CommentsController extends Controller
 {
     /**
@@ -34,9 +39,30 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $post_id)
     {
-        //
+        $this->validate($request,array(
+            'name'    => 'required|max:255',
+            'email'   => 'required|email|max:255',
+            'comment' => 'required|min:5|max:2000'
+            ));
+
+        $post = Post::find($post_id);
+
+        $comment = new Comment();
+
+        $comment->name = $request->name;
+        $comment->email = $request->email;
+        $comment->comment = $request->comment;
+        $comment->approved = true;
+        //$comment->associate($post);
+        $comment->post_id = $post_id;
+        $comment->save();
+
+        Session::flash('success', 'Comment was added');
+
+        return redirect()->route('blog.single', $post->slug);
+
     }
 
     /**
