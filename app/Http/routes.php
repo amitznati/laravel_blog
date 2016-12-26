@@ -16,7 +16,7 @@ Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', ['uses' =>'Auth\AuthController@getLogout', 'as' => 'logout']);
 
 //Registration Routes
-Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::get('auth/register', ['uses' => 'Auth\AuthController@getRegister', 'as' => 'register']);
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 //Password Reset Routes
