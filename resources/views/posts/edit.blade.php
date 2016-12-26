@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', '| View Post')
+@section('title', '| Edit Post')
 
 @section('stylesheets')
 

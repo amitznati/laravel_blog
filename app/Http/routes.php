@@ -32,7 +32,9 @@ Route::resource('categories', 'CategoryController',['except' => ['create']]);
 Route::resource('tags', 'TagController',['except' => ['create']]);
 
 //Comments
+Route::resource('comments', 'CommentsController',['except' => ['create','store']]);
 Route::post('comments/{post_id}', ['uses' => 'CommentsController@store', 'as' => 'comments.store']);
+Route::get('comments/{id}/delete', ['uses' => 'CommentsController@delete', 'as' => 'comments.delete']);
 
 
 Route::get('/contact', 'PagesController@getContact');

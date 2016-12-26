@@ -20,7 +20,7 @@
             </div>
             <p>Posted In: {{ $post->category ? $post->category->name : "" }}</p>
             <br>
-            <h3><span class="glyphicon glyphicon-comment"></span>  Comments: {{ $post->comments()->count() }} </h3>
+            <h3><span class="glyphicon glyphicon-comment"></span>   {{ $post->comments()->count() }} Comments </h3>
             @foreach($post->comments as $comment)
             <div class="comment">    
                 <div class="author-info">

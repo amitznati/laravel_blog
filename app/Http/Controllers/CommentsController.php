@@ -84,7 +84,8 @@ class CommentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comment = Comment::find($id);
+        return view('comments.edit')->withComment($comment);
     }
 
     /**
@@ -96,9 +97,22 @@ class CommentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,array('comment' => 'required|min:5|max:2000'));
+        $comment = Comment::find($id);
+        $comment->comment = $request->comment;
+
+        $comment->save();
+
+        Session::flash('success', 'Comment was updated');
+
+        return redirect()->route('posts.show', $comment->post->id);
     }
 
+    public function delete($id)
+    {
+        $comment = Comment::find($id);
+        return view('comments.delete')->withComment($comment);
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -107,6 +121,10 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::find($id);
+        $post_id = $comment->post_id;
+        $comment->delete();
+        Session::flash('success', 'Comment has been deleted!');
+        return redirect()->route('posts.show', $post_id);
     }
 }
