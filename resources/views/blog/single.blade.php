@@ -20,11 +20,20 @@
             </div>
             <p>Posted In: {{ $post->category ? $post->category->name : "" }}</p>
             <br>
-            <h4>Comments:</h4>
+            <h3><span class="glyphicon glyphicon-comment"></span>  Comments: {{ $post->comments()->count() }} </h3>
             @foreach($post->comments as $comment)
-
-                <p><strong>Name: </strong>{{ $comment->name }}</p>
-                <p><strong>Comment:</strong><br>{{$comment->comment}}</p>
+            <div class="comment">    
+                <div class="author-info">
+                    <img src="{{ "https://www.gravatar.com/avatar/" . md5(strtolower(trim($comment->email))) . "?d=retro"}}" class="author-img">
+                    <div class="author-name">
+                        <h4>{{ $comment->name }}</h4>
+                        <p>{{ date('F nS, Y - G:i', strtotime($comment->created_at)) }}</p>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    {{$comment->comment}}
+                </div>
+            </div>
             @endforeach
         </div>
     </div>
