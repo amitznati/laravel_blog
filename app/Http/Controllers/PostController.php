@@ -34,8 +34,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('is_active', '=', '1')->get()->lists('name','id');
-        $tags = Tag::all()->lists('name','id');
+        $categories = Category::where('is_active', '=', '1')->get();
+        $tags = Tag::all();
         return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
