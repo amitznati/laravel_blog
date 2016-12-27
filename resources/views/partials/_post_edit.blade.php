@@ -11,4 +11,4 @@
 {{ Form::select('tags[]',$tags, null, ["class" => "form-control select2-multi", 'multiple' => 'multiple']) }}
 <br>
 {{ Form::label('body','Post Body:') }}
-{{ Form::textarea('body',null ,array('class' => 'form-control', 'required' => '', 'placeholder' => 'Free Text Here...')) }}
+{{ Form::textarea('body',null ,array('class' => 'form-control', 'placeholder' => 'Free Text Here...')) }}
