@@ -8,7 +8,7 @@
     <div class="col-md-8">
         <div class="post">
             <h1>{{ $post->title }}</h3>
-            <p class="lead">{{ $post->body }}</p>
+            <p class="lead">{!! $post->body !!}</p>
 
             <hr>
             
