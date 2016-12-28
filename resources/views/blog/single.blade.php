@@ -9,6 +9,9 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h1>{{ $post->title }}</h1>
+            @if($post->image_url)
+                <img src="{{asset('images/' . $post->image_url)}}">
+            @endif
             <p>{!! $post->body !!}</p>
             <hr>
             <div class="tags"> 

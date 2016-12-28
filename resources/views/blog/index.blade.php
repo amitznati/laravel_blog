@@ -15,6 +15,10 @@
                     <h2>{{ $post->title }}</h2>
                     <h5>Published: {{ date('M j, Y', strtotime($post->created_at)) }}</h5>
                     <p>{{ substr(strip_tags($post->body),0,300) }}{{ strlen(strip_tags($post->body)) > 300 ? "..." : "" }}</p>
+                    @if($post->image_url)
+                    <img src="{{asset('images/' . $post->image_url)}}" height="100" width="100">
+                    <br>
+                    @endif
                     <a href="{{ route('blog.single', $post->slug) }}">Read More</a>
                 </div>
                 

@@ -8,7 +8,7 @@
         <div class="col-md-8 col-md-offset-2">
             <h1>Cteate New Post</h1>
             <hr>
-            {!! Form::open(array('route' => 'posts.store', 'data-parsley-validate' => '')) !!}
+            {!! Form::open(array('route' => 'posts.store', 'data-parsley-validate' => '','files' => true)) !!}
                 @include('partials._post_edit')
                 {{ Form::submit('Create Post',array('class' => 'btn btn-success btn-lg btn-block' , 'style' => 'margin-top: 20px') )}}
             {!! Form::close() !!}

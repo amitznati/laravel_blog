@@ -10,5 +10,8 @@
 {{ Form::label('tags','Tags:') }}
 {{ Form::select('tags[]',$tags, null, ["class" => "form-control select2-multi", 'multiple' => 'multiple']) }}
 <br>
+{{ Form::label('featured_image', 'Upload Featured Image') }}
+{{ Form::file('featured_image') }}
+<br>
 {{ Form::label('body','Post Body:') }}
 {{ Form::textarea('body',null ,array('class' => 'form-control', 'placeholder' => 'Free Text Here...')) }}

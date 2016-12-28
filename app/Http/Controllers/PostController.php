@@ -11,6 +11,7 @@ use App\Category;
 use App\Tag;
 use Session;
 use Purifier;
+use Image;
 
 class PostController extends Controller
 {
@@ -56,13 +57,24 @@ class PostController extends Controller
                 'category_id' => 'required|integer',
                 'body'        => 'required'
             ));
-        //Stor in DB
         $post = new Post;
+
+        //Stor in DB
         $post->title       = $request->title;
         $post->slug        = $request->slug;
         $post->category_id = $request->category_id;
         $post->body        = Purifier::clean($request->body);
         
+        //save our image
+        if($request->hasFile('featured_image'))
+        {
+            $image = $request->file('featured_image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/' . $filename);
+            Image::make($image)->resize(800, 400)->save($location);
+            $post->image_url = $filename;
+        }
+
         $post->save();
         
         $post->tags()->sync($request->tags, false);

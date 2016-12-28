@@ -9,7 +9,9 @@
         <div class="post">
             <h1>{{ $post->title }}</h3>
             <p class="lead">{!! $post->body !!}</p>
-
+            @if($post->image_url)
+            <img src="{{ asset('/images/' . $post->image_url) }}" height="400" width="600">
+            @endif
             <hr>
             
             <div class="tags"> 
