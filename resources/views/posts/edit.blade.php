@@ -5,7 +5,7 @@
 
 <div class="row">
     @section('post_form')
-        {!! Form::model($post, ['route' => ['posts.update', $post->id] , 'method' => 'PUT']) !!}
+        {!! Form::model($post, ['route' => ['posts.update', $post->id] , 'method' => 'PUT', 'files' => true]) !!}
         
         <div class="col-md-8">
 

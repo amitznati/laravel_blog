@@ -10,6 +10,7 @@
 {{ Form::label('tags','Tags:') }}
 {{ Form::select('tags[]',$tags, null, ["class" => "form-control select2-multi", 'multiple' => 'multiple']) }}
 <br>
+<br>
 {{ Form::label('featured_image', 'Upload Featured Image') }}
 {{ Form::file('featured_image') }}
 <br>
