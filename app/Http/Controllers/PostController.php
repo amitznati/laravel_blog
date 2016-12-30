@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\Category;
 use App\Tag;
@@ -26,7 +27,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->paginate(10);
+        
+        $posts = Post::where('user_id',Auth::id())->orderBy('id', 'desc')->paginate(10);
         return view('posts.index')->withPosts($posts);
     }
 
@@ -66,6 +68,7 @@ class PostController extends Controller
         $post->slug        = $request->slug;
         $post->category_id = $request->category_id;
         $post->body        = Purifier::clean($request->body);
+        $post->user_id     = Auth::id();
         
         //save our image
         if($request->hasFile('featured_image'))
